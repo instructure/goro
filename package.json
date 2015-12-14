@@ -24,6 +24,7 @@
   "repository": "amireh/rspec-jojo",
   "dependencies": {
     "blessed": "^0.1.81",
+    "chokidar": "^1.4.1",
     "commander": "^2.9.0",
     "react": "^0.14.3",
     "react-blessed": "^0.1.7",
