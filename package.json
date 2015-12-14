@@ -1,6 +1,6 @@
 {
   "name": "rspec-jojo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "RSpec runner.",
   "main": "dist/JojoCLI.js",
   "bin": {
