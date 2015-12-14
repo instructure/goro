@@ -3,6 +3,18 @@
     "node": true
   },
 
+  "ecmaFeatures": {
+    "blockBindings": true,
+    "arrowFunctions": true,
+    "classes": true,
+    "templateStrings": true,
+    "destructuring": true,
+    "objectLiteralShorthandMethods": true,
+    "spread": true,
+    "restParams": true,
+    "jsx": true,
+  },
+
   "plugins": [
     "react"
   ],
