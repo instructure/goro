@@ -1,6 +1,6 @@
 {
   "name": "rspec-jojo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "RSpec runner.",
   "main": "dist/JojoCLI.js",
   "bin": {
@@ -10,6 +10,7 @@
     "build": "babel --ignore '*.test.js' -d dist lib",
     "lint": "eslint lib/*.js",
     "test": "mocha --compilers js:babel-core/register 'lib/**/*.test.js'",
+    "watch": "while inotifywait -e modify lib/* | read; do npm run build; done",
     "prepublish": "npm run lint && npm run test && npm run build"
   },
   "author": "Ahmad Amireh",

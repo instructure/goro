@@ -13,6 +13,12 @@ class JojoFormatter < RSpec::Core::Formatters::BaseFormatter
   ]
 
   def initialize(_output)
+    @stdout_interceptor = StreamInterceptor.new(STDOUT)
+
+    @stream_lock = Mutex.new
+    @stream = @stdout_interceptor.original
+    @stdout_interceptor.capture { |buf| write({ name: 'stdout', data: buf }) }
+
     super
   end
 
@@ -27,6 +33,8 @@ class JojoFormatter < RSpec::Core::Formatters::BaseFormatter
     write({
       name: 'group_finished'
     })
+
+    @stdout_interceptor.release
   end
 
   def message(_notification)
@@ -75,7 +83,45 @@ class JojoFormatter < RSpec::Core::Formatters::BaseFormatter
   private
 
   def write(msg)
-    STDOUT.write(msg.to_json + "\n")
-    STDOUT.flush
+    @stream_lock.synchronize do
+      @stream.write(msg.to_json + "\n")
+      @stream.flush
+    end
+  end
+
+  private
+
+  class StreamInterceptor
+    attr_reader :original
+
+    def initialize(fd)
+      @target = fd
+      @original = fd.clone
+    end
+
+    def capture(&on_buf)
+      sink = IO.pipe
+      sink[0].autoclose = false
+
+      @target.reopen(sink[1])
+
+      @poller = Thread.new do
+        begin
+          result = sink[0].read_nonblock(1024)
+          on_buf.call(result)
+        rescue IO::WaitReadable
+          IO.select(sink)
+          retry
+        rescue IO::WaitWritable
+          IO.select(nil, sink)
+          retry
+        end
+      end
+    end
+
+    def release
+      @poller.kill
+      @target.reopen(@original)
+    end
   end
 end

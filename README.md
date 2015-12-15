@@ -68,6 +68,18 @@ _TODO_
 
 ### Grepping
 
+## Changelog
+
+### 1.0.5
+
+- regular STDOUT output from RSpec is now forwarded to the Console section
+  in the reporter
+- Ruby errors are now displayed in the Failures section of the reporter
+- no longer printing the "Delayed execution; ..." message in the console
+  as there is already an indicator for it in the status bar
+- added a text reporter that can be engaged by supplying `--reporter text` 
+  which will not engage the blessed UI
+
 ## License
 
 The MIT License (MIT)
