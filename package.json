@@ -1,14 +1,14 @@
 {
-  "name": "rspec-jojo",
+  "name": "goro",
   "version": "1.0.5",
-  "description": "RSpec runner.",
-  "main": "dist/JojoCLI.js",
+  "description": "An RSpec runner with four arms.",
+  "main": "dist/GoroCLI.js",
   "bin": {
-    "jojo": "./dist/JojoCLI.js"
+    "goro": "./dist/GoroCLI.js"
   },
   "scripts": {
     "build": "babel --ignore '*.test.js' -d dist lib",
-    "lint": "eslint lib/*.js",
+    "lint": "eslint lib/",
     "test": "mocha --compilers js:babel-core/register 'lib/**/*.test.js'",
     "watch": "while inotifywait -e modify lib/* | read; do npm run build; done",
     "prepublish": "npm run lint && npm run test && npm run build"
@@ -22,7 +22,7 @@
     "ruby"
   ],
   "license": "MIT",
-  "repository": "amireh/rspec-jojo",
+  "repository": "instructure/goro",
   "dependencies": {
     "blessed": "^0.1.81",
     "chokidar": "^1.4.1",

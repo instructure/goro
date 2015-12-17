@@ -1,6 +1,6 @@
 RSpec::Support.require_rspec_core "formatters/base_formatter"
 
-class JojoFormatter < RSpec::Core::Formatters::BaseFormatter
+class GoroFormatter < RSpec::Core::Formatters::BaseFormatter
   RSpec::Core::Formatters.register self, *[
     :start,
     :close,
