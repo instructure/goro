@@ -8,6 +8,7 @@ class GoroFormatter < RSpec::Core::Formatters::BaseFormatter
     :dump_summary,
     :dump_profile,
     :example_passed,
+    :example_pending,
     :example_failed,
     :seed,
   ]
@@ -54,6 +55,21 @@ class GoroFormatter < RSpec::Core::Formatters::BaseFormatter
 
     write({
       name: 'example_passed',
+      example: {
+        id: example.id,
+        description: example.description,
+        full_description: example.full_description,
+        location: example.location,
+        pending: example.pending?
+      }
+    })
+  end
+
+  def example_pending(notification)
+    example = notification.example
+
+    write({
+      name: 'example_pending',
       example: {
         id: example.id,
         description: example.description,

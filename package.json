@@ -1,6 +1,6 @@
 {
   "name": "goro",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "An RSpec runner with four arms.",
   "main": "dist/GoroCLI.js",
   "bin": {
@@ -11,7 +11,8 @@
     "lint": "eslint lib/",
     "test": "mocha --compilers js:babel-core/register 'lib/**/*.test.js'",
     "watch": "while inotifywait -e modify lib/* | read; do npm run build; done",
-    "prepublish": "npm run lint && npm run test && npm run build"
+    "prepublish": "npm run lint && npm run test && npm run build",
+    "goro": "node -r babel-core/register lib/GoroCLI.js"
   },
   "author": "Ahmad Amireh",
   "keywords": [
@@ -41,6 +42,7 @@
     "eslint-plugin-react": "^3.11.3",
     "mocha": "^2.3.4",
     "mock-require": "^1.2.1",
+    "react-drill": "^2.1.0",
     "sinon": "^1.17.2"
   }
 }

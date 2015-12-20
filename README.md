@@ -70,6 +70,14 @@ _TODO_
 
 ## Changelog
 
+### 1.1.0
+
+- support for tracking RSpec pending specs
+- moved the console widget to its own panel which now contains goro's messages as well as RSpec's stdout/stderr streams. The console panel can be activated using `TAB`.
+- added an "Elapsed" stopwatch-style timer to the "Latest Run" stats box.
+- a few UI enhancements
+- (bugfix) RSpec warnings/stderr output are no longer treated like spec failures, instead they are redirected to the Console widget.
+
 ### 1.0.5
 
 - regular STDOUT output from RSpec is now forwarded to the Console section
