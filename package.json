@@ -29,7 +29,7 @@
     "chokidar": "^1.4.1",
     "commander": "^2.9.0",
     "react": "^0.14.3",
-    "react-blessed": "^0.1.7",
+    "react-blessed": "^0.7.2",
     "react-schema": "^1.1.0"
   },
   "devDependencies": {
